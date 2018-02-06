@@ -1,8 +1,41 @@
 <% include partials/header.ejs %>
 
 <div class="container">
-    <h1>Sign up page</h1>
-    <p>TODO: Implement the sign up page</p>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <% if (flashError && flashError.length > 0) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= flashError %>
+                </div>
+            <% } %>
+            <% if (flashSuccess && flashSuccess.length > 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%= flashSuccess %>
+                </div>
+            <% } %>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sign Up to StoreHelper</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/signup" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username" >
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" >
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="passwordconf" placeholder="Confirm password" >
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <% include partials/footer %>
