@@ -2,5 +2,10 @@
 <div class="container">
     <h1>Welcome</h1>
     <p>You have arrived at the index page.</p>
+    <% if (currentUser) { %>
+        <p>Logged in as <strong><%= currentUser.username %></strong>.</p>
+    <% } else { %>
+        <p>Please log in now.</p>
+    <% } %>
 </div>
 <% include partials/footer %>
