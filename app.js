@@ -10,6 +10,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var User = require('./models/User');
 
+// Importing routes
+var indexRoutes = require('./routes/index');
+
 mongoose.connect('mongodb://localhost/storehelper', function (err) {
   if (err) {
     console.log('Unable to connect to the database.');
@@ -46,77 +49,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', function (req, res) {
-  res.render('index');
-});
-
-app.get('/login', function (req, res) {
-  res.render('login');
-});
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: "Invalid username or password!"
-}), function (req, res) {
-});
-
-app.get('/logout', function(req, res) {
-  req.logout();
-  req.flash('success', 'You have successfully logged out.');
-  res.redirect('/login');
-});
-
-app.get('/signup', function (req, res) {
-  res.render('signup');
-});
-
-app.post('/signup', function (req, res) {
-  var username = req.body.username || '';
-  var password1 = req.body.password || '';
-  var password2 = req.body.passwordconf || '';
-
-  if (!username || username.length <= 0) {
-    req.flash('error', 'Please enter a username.');
-    return res.redirect('/signup');
-  }
-
-  if (password1 !== password2) {
-    req.flash('error', 'Passwords do not match.');
-    return res.redirect('/signup');
-  }
-
-  if (!password1 || password1.length <= 0) {
-    req.flash('error', 'Please enter a password.');
-    return res.redirect('/signup');
-  }
-
-  if (username.length < 5) {
-    req.flash('error', 'Username should be at least 5 characters.');
-    return res.redirect('/signup');
-  }
-
-  if (password1.length < 8) {
-    req.flash('error', 'Password should be at least 8 characters.');
-    return res.redirect('/signup');
-  }
-
-  var newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function (err, user) {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('/signup');
-    }
-    req.flash('success', 'Your account has successfully been registered.');
-    return res.redirect('/signup');
-  });
-
-});
-
-app.all('*', function (req, res) {
-  res.status(404);
-  res.render('error');
-});
+app.use('/', indexRoutes);
 
 app.listen(3000, function () {
   console.log('App has been started on port 3000');
