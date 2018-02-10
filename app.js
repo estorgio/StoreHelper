@@ -12,6 +12,7 @@ var User = require('./models/User');
 
 // Importing routes
 var indexRoutes = require('./routes/index');
+var userRoutes = require('./routes/users');
 
 mongoose.connect('mongodb://localhost/storehelper', function (err) {
   if (err) {
@@ -49,6 +50,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use('/users', userRoutes);
 app.use('/', indexRoutes);
 
 app.listen(3000, function () {
