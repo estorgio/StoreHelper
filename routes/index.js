@@ -65,6 +65,10 @@ router.post('/signup', function (req, res) {
       req.flash('error', err.message);
       return res.redirect('/signup');
     }
+    user.firstname = req.body.firstname;
+    user.lastname = req.body.lastname;
+    user.save();
+
     req.flash('success', 'Your account has successfully been registered.');
     return res.redirect('/signup');
   });

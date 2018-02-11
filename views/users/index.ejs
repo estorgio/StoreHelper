@@ -29,30 +29,38 @@
             <th>Type</th>
             </thead>
             <tbody>
-            <tr>
-                <td>admin</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>Administrator</td>
-            </tr>
-            <tr>
-                <td>admin</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>Administrator</td>
-            </tr>
-            <tr>
-                <td>admin</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>Administrator</td>
-            </tr>
-            <tr>
-                <td>admin</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>Administrator</td>
-            </tr>
+                <% users.forEach(function (user) { %>
+                    <tr>
+                        <td><%= user.username %></td>
+                        <td><%= user.firstname %></td>
+                        <td><%= user.lastname %></td>
+                        <td><%= user.type %></td>
+                    </tr>
+                <% }); %>
+                <!--<tr>-->
+                    <!--<td>admin</td>-->
+                    <!--<td>John</td>-->
+                    <!--<td>Doe</td>-->
+                    <!--<td>Administrator</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>admin</td>-->
+                    <!--<td>John</td>-->
+                    <!--<td>Doe</td>-->
+                    <!--<td>Administrator</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>admin</td>-->
+                    <!--<td>John</td>-->
+                    <!--<td>Doe</td>-->
+                    <!--<td>Administrator</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>admin</td>-->
+                    <!--<td>John</td>-->
+                    <!--<td>Doe</td>-->
+                    <!--<td>Administrator</td>-->
+                <!--</tr>-->
 
             </tbody>
         </table>
