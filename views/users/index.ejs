@@ -27,6 +27,8 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Type</th>
+            <th>Created</th>
+            <th>Last Login</th>
             </thead>
             <tbody>
                 <% users.forEach(function (user) { %>
@@ -35,33 +37,10 @@
                         <td><%= user.firstname %></td>
                         <td><%= user.lastname %></td>
                         <td><%= user.type %></td>
+                        <td><%= user.created.toUTCString()  %></td>
+                        <td><%= user.last_login.toUTCString() %></td>
                     </tr>
                 <% }); %>
-                <!--<tr>-->
-                    <!--<td>admin</td>-->
-                    <!--<td>John</td>-->
-                    <!--<td>Doe</td>-->
-                    <!--<td>Administrator</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>admin</td>-->
-                    <!--<td>John</td>-->
-                    <!--<td>Doe</td>-->
-                    <!--<td>Administrator</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>admin</td>-->
-                    <!--<td>John</td>-->
-                    <!--<td>Doe</td>-->
-                    <!--<td>Administrator</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>admin</td>-->
-                    <!--<td>John</td>-->
-                    <!--<td>Doe</td>-->
-                    <!--<td>Administrator</td>-->
-                <!--</tr>-->
-
             </tbody>
         </table>
     </div>

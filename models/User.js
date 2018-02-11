@@ -6,7 +6,9 @@ var userSchema = new mongoose.Schema({
   password: String,
   firstname: String,
   lastname: String,
-  type: {type: String, default: 'cashier'}
+  type: {type: String, default: 'cashier'},
+  created: {type: Date, default: Date.now},
+  last_login: {type: Date, default: Date.now}
 });
 
 userSchema.plugin(passportLocalMongoose);
