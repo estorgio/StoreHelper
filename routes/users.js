@@ -10,5 +10,9 @@ route.get('/', function (req, res) {
   });
 });
 
+route.get('/new', function (req, res) {
+  res.render('users/new');
+});
+
 
 module.exports = route;
