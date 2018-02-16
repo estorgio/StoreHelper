@@ -9,6 +9,18 @@
     </div>
     <div class="row">
         <div class="col-md-5">
+            <div class="pull-right">
+                <form action="/users/<%= user.id %>/<%= user.enabled ? 'disable' : 'enable' %>" method="post">
+                    <button class="btn <%= user.enabled ? 'btn-warning' : 'btn-success' %>">
+                        <i class="fa fa-<%= user.enabled ? 'lock' : 'unlock' %>" aria-hidden="true"></i>
+                        <%= user.enabled ? 'Disable account' : 'Enable account' %>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
             <form action="/users" method="post">
                 <div class="form-group">
                     <label for="firstname">First Name</label>

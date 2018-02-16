@@ -17,7 +17,11 @@ router.post('/login', function (req, res, next) {
     if (err) return next(err);
     if (!user) {
       req.flash('error', 'Invalid username or password!');
-      return res.redirect('/login')
+      return res.redirect('/login');
+    }
+    if (!user.enabled) {
+      req.flash('error', 'Unable to login. This account has been disabled.');
+      return res.redirect('/login');
     }
     req.logIn(user, function (err) {
       if (err) return next(err);

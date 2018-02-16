@@ -50,7 +50,7 @@
             </thead>
             <tbody>
                 <% users.forEach(function (user) { %>
-                    <tr>
+                    <tr <% if (!user.enabled) { %> class="danger" <% } %>>
                         <td><a href="/users/<%= user.id %>"><%= user.username %></a></td>
                         <td><%= user.firstname %></td>
                         <td><%= user.lastname %></td>

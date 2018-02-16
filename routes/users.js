@@ -38,8 +38,48 @@ route.get('/:id', function (req, res) {
     }
 
     res.render('users/show', {user: foundUser});
-  })
-})
+  });
+});
+
+route.post('/:id/disable', function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err || !foundUser) {
+      req.flash('error', 'Unable to find the specified user.');
+      return res.redirect('/users');
+    }
+    foundUser.enabled = false;
+    foundUser
+      .save()
+      .then(function () {
+        req.flash('success', 'Account has been disabled.');
+        return res.redirect('/users');
+      })
+      .catch(function () {
+        req.flash('success', 'An error occurred while disabling the user.');
+        return res.redirect('/users');
+      });
+  });
+});
+
+route.post('/:id/enable', function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err || !foundUser) {
+      req.flash('error', 'Unable to find the specified user.');
+      return res.redirect('/users');
+    }
+    foundUser.enabled = true;
+    foundUser
+      .save()
+      .then(function () {
+        req.flash('success', 'Account has been successfully enabled.');
+        return res.redirect('/users');
+      })
+      .catch(function () {
+        req.flash('success', 'An error occured while enabling the user.');
+        return res.redirect('/users');
+      });
+  });
+});
 
 
 module.exports = route;
