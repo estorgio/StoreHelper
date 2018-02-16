@@ -8,7 +8,8 @@ var userSchema = new mongoose.Schema({
   lastname: String,
   type: {type: String, default: 'cashier'},
   created: {type: Date, default: Date.now},
-  last_login: {type: Date, default: Date.now}
+  last_login: {type: Date, default: Date.now},
+  enabled: {type: Boolean, default: true}
 });
 
 userSchema.plugin(passportLocalMongoose);
