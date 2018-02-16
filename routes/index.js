@@ -23,6 +23,10 @@ router.post('/login', function (req, res, next) {
       req.flash('error', 'Unable to login. This account has been disabled.');
       return res.redirect('/login');
     }
+    if (user.deleted) {
+      req.flash('error', 'Unable to login. This account has been already deleted.');
+      return res.redirect('/login');
+    }
     req.logIn(user, function (err) {
       if (err) return next(err);
       user.last_login = Date.now();

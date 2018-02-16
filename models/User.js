@@ -9,7 +9,8 @@ var userSchema = new mongoose.Schema({
   type: {type: String, default: 'cashier'},
   created: {type: Date, default: Date.now},
   last_login: {type: Date, default: Date.now},
-  enabled: {type: Boolean, default: true}
+  enabled: {type: Boolean, default: true},
+  deleted: {type: Boolean, default: false}
 });
 
 userSchema.plugin(passportLocalMongoose);

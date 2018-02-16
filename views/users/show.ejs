@@ -9,11 +9,17 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            <div class="pull-right">
+            <div class="action-buttons">
                 <form action="/users/<%= user.id %>/<%= user.enabled ? 'disable' : 'enable' %>" method="post">
                     <button class="btn <%= user.enabled ? 'btn-warning' : 'btn-success' %>">
                         <i class="fa fa-<%= user.enabled ? 'lock' : 'unlock' %>" aria-hidden="true"></i>
                         <%= user.enabled ? 'Disable account' : 'Enable account' %>
+                    </button>
+                </form>
+                <form action="/users/<%= user.id %>/?_method=DELETE" method="post">
+                    <button class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        Delete account
                     </button>
                 </form>
             </div>

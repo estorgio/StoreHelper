@@ -4,7 +4,7 @@ var route = express.Router();
 var User = require('../models/User');
 
 route.get('/', function (req, res) {
-  User.find({}, function (err, users) {
+  User.find({deleted: false}, function (err, users) {
     if (err) return res.render('error');
     res.render('users/index', {users: users});
   });
@@ -75,7 +75,27 @@ route.post('/:id/enable', function (req, res) {
         return res.redirect('/users');
       })
       .catch(function () {
-        req.flash('success', 'An error occured while enabling the user.');
+        req.flash('success', 'An error occurred while enabling the user.');
+        return res.redirect('/users');
+      });
+  });
+});
+
+route.delete('/:id', function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err || !foundUser) {
+      req.flash('error', 'Unable to find the specified user.');
+      return res.redirect('/users');
+    }
+    foundUser.deleted = true;
+    foundUser
+      .save()
+      .then(function () {
+        req.flash('success', 'Account has been successfully deleted.');
+        return res.redirect('/users');
+      })
+      .catch(function () {
+        req.flash('success', 'An error occurred while deleting the account.');
         return res.redirect('/users');
       });
   });

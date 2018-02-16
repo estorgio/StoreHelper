@@ -9,3 +9,6 @@ body {
 .action-buttons + * {
     clear: both;
 }
+.action-buttons form {
+    display: inline-block;
+}
