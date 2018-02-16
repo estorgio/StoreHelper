@@ -30,5 +30,16 @@ route.post('/', function (req, res) {
   });
 });
 
+route.get('/:id', function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err || !foundUser) {
+      req.flash('error', 'Unable to find the specified user.');
+      return res.redirect('/users');
+    }
+
+    res.render('users/show', {user: foundUser});
+  })
+})
+
 
 module.exports = route;
