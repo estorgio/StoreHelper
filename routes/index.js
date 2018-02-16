@@ -87,7 +87,7 @@ router.post('/signup', function (req, res) {
     user.save();
 
     req.flash('success', 'Your account has successfully been registered.');
-    return res.redirect('/signup');
+    return res.redirect('/login');
   });
 
 });
