@@ -2,19 +2,20 @@ var express = require('express');
 var route = express.Router();
 
 var User = require('../models/User');
+var middleware = require('../middleware/index');
 
-route.get('/', function (req, res) {
+route.get('/', middleware.isLoggedIn, function (req, res) {
   User.find({deleted: false}, function (err, users) {
     if (err) return res.render('error');
     res.render('users/index', {users: users});
   });
 });
 
-route.get('/new', function (req, res) {
+route.get('/new', middleware.isLoggedIn, function (req, res) {
   res.render('users/new');
 });
 
-route.post('/', function (req, res) {
+route.post('/', middleware.isLoggedIn, function (req, res) {
   var formData = req.body.user;
   var newUser = new User({ username: formData.username });
 
@@ -30,7 +31,7 @@ route.post('/', function (req, res) {
   });
 });
 
-route.get('/:id', function (req, res) {
+route.get('/:id', middleware.isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -41,7 +42,7 @@ route.get('/:id', function (req, res) {
   });
 });
 
-route.post('/:id/disable', function (req, res) {
+route.post('/:id/disable', middleware.isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -61,7 +62,7 @@ route.post('/:id/disable', function (req, res) {
   });
 });
 
-route.post('/:id/enable', function (req, res) {
+route.post('/:id/enable', middleware.isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -81,7 +82,7 @@ route.post('/:id/enable', function (req, res) {
   });
 });
 
-route.delete('/:id', function (req, res) {
+route.delete('/:id', middleware.isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
