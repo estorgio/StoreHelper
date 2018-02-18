@@ -10,7 +10,7 @@ module.exports = {
       all: [
         {url: '/', caption: 'Home'},
         {url: '/cashier', caption: 'Cashier'},
-        {url: '/users', caption: 'Userz'},
+        {url: '/users', caption: 'User'},
       ],
       current: ''
     };
