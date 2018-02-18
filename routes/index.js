@@ -5,11 +5,13 @@ var passport = require('passport');
 var User = require('../models/User');
 
 router.get('/', function (req, res) {
+  res.setNavbarPage('/');
   res.setTitle('Welcome');
   res.render('index');
 });
 
 router.get('/login', function (req, res) {
+  res.setNavbarPage('/login');
   res.setTitle('Login');
   res.render('login');
 });
@@ -45,6 +47,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/signup', function (req, res) {
+  res.setNavbarPage('/signup');
   res.setTitle('Sign Up');
   res.render('signup');
 });

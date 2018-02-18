@@ -28,9 +28,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="/cashier">Cashier</a></li>
-                <li><a href="/users">Users</a></li>
+                <% navLinks.all.forEach(function (navLink) { %>
+                    <li <%- navLinks.current === navLink.url ? 'class="active"' : '' %>>
+                        <a href="<%= navLink.url %>">
+                            <%= navLink.caption %>
+                            <% if (navLinks.current === navLink.url) { %> <span class="sr-only">(current)</span></a> <% } %>
+                        </a>
+                    </li>
+                <% }); %>
                 <!--<li class="dropdown">-->
                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
                     <!--<ul class="dropdown-menu">-->
@@ -66,8 +71,12 @@
                         </ul>
                     </li>
                 <% } else { %>
-                    <li><a href="/signup">Sign up</a></li>
-                    <li><a href="/login">Log in</a></li>
+                    <li <%- navLinks.current === '/signup' ? 'class="active"' : '' %>>
+                        <a href="/signup">Sign up</a>
+                    </li>
+                    <li <%- navLinks.current === '/login' ? 'class="active"' : '' %>>
+                        <a href="/login">Log in</a>
+                    </li>
                 <% } %>
                 <!--<li class="dropdown">-->
                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->

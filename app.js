@@ -10,6 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var methodOverride = require('method-override');
 var User = require('./models/User');
+var middleware = require('./middleware/index');
 
 // Importing routes
 var indexRoutes = require('./routes/index');
@@ -54,6 +55,8 @@ app.use(function (req, res, next) {
   };
   next();
 });
+
+app.use(middleware.navigation);
 
 app.use('/users', userRoutes);
 app.use('/', indexRoutes);

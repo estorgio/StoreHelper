@@ -4,6 +4,11 @@ var route = express.Router();
 var User = require('../models/User');
 var middleware = require('../middleware/index');
 
+route.use(function (req, res, next) {
+  res.setNavbarPage('/users');
+  next();
+});
+
 route.get('/', middleware.isLoggedIn, function (req, res) {
   User.find({deleted: false}, function (err, users) {
     if (err) return res.render('error');
