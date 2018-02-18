@@ -5,10 +5,12 @@ var passport = require('passport');
 var User = require('../models/User');
 
 router.get('/', function (req, res) {
+  res.setTitle('Welcome');
   res.render('index');
 });
 
 router.get('/login', function (req, res) {
+  res.setTitle('Login');
   res.render('login');
 });
 
@@ -43,6 +45,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/signup', function (req, res) {
+  res.setTitle('Sign Up');
   res.render('signup');
 });
 
@@ -93,6 +96,7 @@ router.post('/signup', function (req, res) {
 });
 
 router.all('*', function (req, res) {
+  res.setTitle('Error');
   res.status(404);
   res.render('error');
 });

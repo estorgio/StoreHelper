@@ -49,6 +49,9 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.flashError = req.flash('error');
   res.locals.flashSuccess = req.flash('success');
+  res.setTitle = function (title) {
+    this.locals.title = 'StoreHelper - ' + title;
+  };
   next();
 });
 

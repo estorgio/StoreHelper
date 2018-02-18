@@ -7,11 +7,13 @@ var middleware = require('../middleware/index');
 route.get('/', middleware.isLoggedIn, function (req, res) {
   User.find({deleted: false}, function (err, users) {
     if (err) return res.render('error');
+    res.setTitle('User Accounts');
     res.render('users/index', {users: users});
   });
 });
 
 route.get('/new', middleware.isLoggedIn, function (req, res) {
+  res.setTitle('Add User Account');
   res.render('users/new');
 });
 
@@ -38,6 +40,7 @@ route.get('/:id', middleware.isLoggedIn, function (req, res) {
       return res.redirect('/users');
     }
 
+    res.setTitle('User Account - ' + foundUser.username);
     res.render('users/show', {user: foundUser});
   });
 });
