@@ -50,6 +50,37 @@ router.get('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
+router.get('/:id/edit', middleware.isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err || !foundUser) {
+      req.flash('error', 'Unable to find the specified user.');
+      return res.redirect('/users');
+    }
+
+    res.setTitle('Edit User Account - ' + foundUser.username);
+    res.render('users/edit', {user: foundUser});
+  });
+});
+
+router.put('/:id', middleware.isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err || !foundUser) {
+      req.flash('error', 'Unable to find the specified user.');
+      return res.redirect('/users');
+    }
+    User.findByIdAndUpdate(req.params.id, req.body.user, function (err, updatedUser) {
+      if (err || !updatedUser) {
+        req.flash('error', 'An error occured while updating account information.');
+        return res.redirect('/users/' + req.params.id);
+      }
+
+      req.flash('success', 'Account information successfully updated.');
+      return res.redirect('/users/' + req.params.id);
+    });
+  });
+});
+
+
 router.post('/:id/disable', middleware.isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
