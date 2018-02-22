@@ -1,26 +1,13 @@
 <% include ../partials/header %>
 
 <div class="container">
+
     <div class="row">
         <div class="col-md-12">
-            <% if (flashError && flashError.length > 0) { %>
-            <div class="alert alert-danger fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <%= flashError %>
-            </div>
-            <% } %>
-            <% if (flashSuccess && flashSuccess.length > 0) { %>
-            <div class="alert alert-success fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <%= flashSuccess %>
-            </div>
-            <% } %>
+            <% include ../partials/flash  %>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <h1><i class="fa fa-info-circle" aria-hidden="true"></i> Account Info</h1>

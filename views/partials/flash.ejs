@@ -1,0 +1,17 @@
+
+<% if (flashError && flashError.length > 0) { %>
+<div class="alert alert-danger fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <%= flashError %>
+</div>
+<% } %>
+<% if (flashSuccess && flashSuccess.length > 0) { %>
+<div class="alert alert-success fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <%= flashSuccess %>
+</div>
+<% } %>
