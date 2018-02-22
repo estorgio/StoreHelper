@@ -27,10 +27,10 @@
                 <div class="form-group">
                     <label for="accountType">Account Type</label>
                     <select name="user[type]" id="accountType" class="form-control" >
-                        <option value="unspecified" <%= user.type === 'cashier' ? 'selected' : '' %>>Select account type</option>
+                        <option value="unspecified" <%= user.type === 'unspecified' ? 'selected' : '' %>>Select account type</option>
                         <option value="cashier" <%= user.type === 'cashier' ? 'selected' : '' %>>Cashier</option>
-                        <option value="manager" <%= user.type === 'cashier' ? 'selected' : '' %>>Manager</option>
-                        <option value="admin" <%= user.type === 'cashier' ? 'selected' : '' %>>Administrator</option>
+                        <option value="manager" <%= user.type === 'manager' ? 'selected' : '' %>>Manager</option>
+                        <option value="admin" <%= user.type === 'admin' ? 'selected' : '' %>>Administrator</option>
                     </select>
                 </div>
                 <div class="pull-right">
