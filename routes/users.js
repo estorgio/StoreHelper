@@ -2,14 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/User');
-var middleware = require('../middleware/index');
+var auth = require('../middleware/auth');
+
+router.use(auth.isLoggedIn);
 
 router.use(function (req, res, next) {
   res.setNavbarPage('/users');
   next();
 });
 
-router.get('/', middleware.isLoggedIn, function (req, res) {
+router.get('/', function (req, res) {
   User.find({deleted: false}, function (err, users) {
     if (err) return res.render('error');
     res.setTitle('User Accounts');
@@ -17,12 +19,12 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.get('/new', middleware.isLoggedIn, function (req, res) {
+router.get('/new', function (req, res) {
   res.setTitle('Add User Account');
   res.render('users/new');
 });
 
-router.post('/', middleware.isLoggedIn, function (req, res) {
+router.post('/', function (req, res) {
   var formData = req.body.user;
   var newUser = new User({ username: formData.username });
 
@@ -38,7 +40,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.get('/:id', middleware.isLoggedIn, function (req, res) {
+router.get('/:id', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -50,7 +52,7 @@ router.get('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.get('/:id/edit', middleware.isLoggedIn, function (req, res) {
+router.get('/:id/edit', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -62,7 +64,7 @@ router.get('/:id/edit', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.put('/:id', middleware.isLoggedIn, function (req, res) {
+router.put('/:id', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -81,7 +83,7 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
 });
 
 
-router.post('/:id/disable', middleware.isLoggedIn, function (req, res) {
+router.post('/:id/disable', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -101,7 +103,7 @@ router.post('/:id/disable', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.post('/:id/enable', middleware.isLoggedIn, function (req, res) {
+router.post('/:id/enable', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
@@ -121,7 +123,7 @@ router.post('/:id/enable', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.delete('/:id', middleware.isLoggedIn, function (req, res) {
+router.delete('/:id', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err || !foundUser) {
       req.flash('error', 'Unable to find the specified user.');
