@@ -9,13 +9,15 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var methodOverride = require('method-override');
+
 var User = require('./models/User');
+var config = require('./config');
 
 // Importing routes
 var indexRoutes = require('./routes/index');
 var userRoutes = require('./routes/users');
 
-mongoose.connect('mongodb://localhost/storehelper', function (err) {
+mongoose.connect(config.DATABASE_URI, function (err) {
   if (err) {
     console.log('Unable to connect to the database.');
     console.log(err);
@@ -34,7 +36,7 @@ app.use(flash());
 
 // Setup authentication
 app.use(session({
-  secret: 'H59TG5xkicoQRr4gv9BijYz26KOKFViv7iio4OAZMlc15PHtuFj7reeYyXtVMvS8',
+  secret: config.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -57,7 +59,6 @@ app.use(require('./middleware/navigation'));
 app.use('/users', userRoutes);
 app.use('/', indexRoutes);
 
-var PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-  console.log('App has been started on port ' + PORT);
+app.listen(config.APP_PORT, function () {
+  console.log('App has been started on port ' + config.APP_PORT);
 });
