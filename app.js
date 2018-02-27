@@ -16,6 +16,7 @@ var config = require('./config');
 // Importing routes
 var indexRoutes = require('./routes/index');
 var userRoutes = require('./routes/users');
+var accountRoutes = require('./routes/account');
 
 mongoose.connect(config.DATABASE_URI, function (err) {
   if (err) {
@@ -57,6 +58,7 @@ app.use(function (req, res, next) {
 app.use(require('./middleware/navigation'));
 
 app.use('/users', userRoutes);
+app.use('/account', accountRoutes);
 app.use('/', indexRoutes);
 
 app.listen(config.APP_PORT, function () {
