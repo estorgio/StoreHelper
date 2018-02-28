@@ -38,8 +38,8 @@
                         <td><%= user.firstname %></td>
                         <td><%= user.lastname %></td>
                         <td><%= user.type %></td>
-                        <td><%= user.created.toUTCString()  %></td>
-                        <td><%= user.last_login.toUTCString() %></td>
+                        <td><%= moment(user.created).calendar()  %></td>
+                        <td><%= moment(user.last_login).calendar() %></td>
                     </tr>
                     <% }); %>
                     </tbody>
