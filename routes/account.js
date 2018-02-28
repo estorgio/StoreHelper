@@ -10,4 +10,8 @@ router.get('/', function (req, res) {
   res.render('account/index', {user: req.user});
 });
 
+router.get('/edit', function (req, res) {
+  res.render('account/edit');
+});
+
 module.exports = router;
