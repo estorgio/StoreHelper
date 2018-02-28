@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var methodOverride = require('method-override');
+var moment = require('moment');
 
 var User = require('./models/User');
 var config = require('./config');
@@ -52,6 +53,7 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.flashError = req.flash('error');
   res.locals.flashSuccess = req.flash('success');
+  res.locals.moment = moment;
   next();
 });
 

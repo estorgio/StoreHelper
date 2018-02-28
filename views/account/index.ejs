@@ -5,14 +5,17 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
+                    <% include ../partials/flash.ejs %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <h1><i class="fa fa-id-card-o" aria-hidden="true"></i> My Account</h1>
                     <hr>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-
-
                     <div class="profile-container">
                         <div class="media">
                             <div class="media-left">
@@ -27,7 +30,6 @@
                                     <p class="profile-subinfo" id="user_company"><%= user.branch || 'No branch' %></p>
                                     <p class="profile-subinfo">@<%= user.username %></p>
                                 </div>
-
                             </div>
                         </div>
                         <div class="profile-fields-container">
@@ -38,7 +40,11 @@
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Birthdate:</div>
-                                    <div class="profile-field-info" id="user_birthdate"><%= user.birthdate || 'Unspecified' %></div>
+                                    <div class="profile-field-info" id="user_birthdate">
+                                        <% if (user.birthdate) { %>
+                                            <%= moment(user.birthdate).format('MMMM DD, YYYY') %>
+                                        <% } %>
+                                    </div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Civil Status:</div>
@@ -58,21 +64,23 @@
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Account Created:</div>
-                                    <div class="profile-field-info" id="user_gender"><%= user.created.toUTCString() %></div>
+                                    <div class="profile-field-info" id="user_gender">
+                                        <%= moment(user.created).calendar() %>
+                                    </div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Last Login:</div>
-                                    <div class="profile-field-info" id="user_gender"><%= user.last_login.toUTCString() %></div>
+                                    <div class="profile-field-info" id="user_gender">
+                                        <%= moment(user.last_login).calendar() %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <a href="/account/edit" class="btn btn-primary">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Edit Account Info
                     </a>
-
                 </div>
             </div>
         </div>

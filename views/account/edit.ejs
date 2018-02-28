@@ -20,13 +20,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname" name="user[firstname]">
+                            <input type="text" class="form-control" id="firstname" name="user[firstname]" value="<%= user.firstname %>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="firstname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" name="user[lastname]">
+                            <input type="text" class="form-control" id="lastname" name="user[lastname]" value="<%= user.lastname %>">
                         </div>
                     </div>
                 </div>
@@ -35,17 +35,21 @@
                         <div class="form-group">
                             <label for="gender">Gender</label>
                             <select name="user[gender]" id="gender" class="form-control">
-                                <option name="Unspecified">Select gender</option>
-                                <option name="Male">Male</option>
-                                <option name="Female">Female</option>
-                                <option name="Other">Other</option>
+                                <option value="Unspecified" <%= user.gender ? '' : 'selected'%>>Select gender</option>
+                                <option value="Male" <%= user.gender === 'Male' ? 'selected' : ''%>>Male</option>
+                                <option value="Female" <%= user.gender === 'Female' ? 'selected' : ''%>>Female</option>
+                                <option value="Other" <%= user.gender === 'Other' ? 'selected' : ''%>>Other</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="birthdate">Birthdate</label>
-                            <input type="date" class="form-control" id="birthdate" name="user[birthdate]">
+                            <input type="date" class="form-control" id="birthdate" name="user[birthdate]"
+                                   <% if (user.birthdate) { %>
+                                   value="<%= moment(user.birthdate).format('YYYY-MM-DD') %>"
+                                   <% } %>
+                            >
                         </div>
                     </div>
                 </div>
@@ -54,18 +58,19 @@
                         <div class="form-group">
                             <label for="civil_status">Civil Status</label>
                             <select name="user[civil_status]" id="civil_status" class="form-control">
-                                <option name="Unspecified">Select civil status</option>
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Divorced</option>
-                                <option>Widowed</option>
+                                <option value="Unspecified" <%= user.civil_status ? '' : 'selected' %>>Select civil status</option>
+                                <option <%= user.civil_status === 'Single' ? 'selected' : '' %>>Single</option>
+                                <option <%= user.civil_status === 'Married' ? 'selected' : '' %>>Married</option>
+                                <option <%= user.civil_status === 'Divorced' ? 'selected' : '' %>>Divorced</option>
+                                <option <%= user.civil_status === 'Widowed' ? 'selected' : '' %>>Widowed</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="" class="form-control" id="phone" name="user[phone]">
+                            <input type="" class="form-control" id="phone" name="user[phone]"
+                                   value="<%= user.phone || '' %>">
                         </div>
                     </div>
                 </div>
@@ -73,13 +78,15 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address" name="user[address]">
+                            <input type="text" class="form-control" id="address" name="user[address]"
+                                value="<%= user.address || '' %>">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-primary">Update Info</button>
+                        <button type="submit" class="btn btn-primary">Update Info</button>
+                        <a href="/account" class="btn btn-default">Cancel</a>
                     </div>
                 </div>
             </form>

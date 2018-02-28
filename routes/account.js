@@ -11,7 +11,18 @@ router.get('/', function (req, res) {
 });
 
 router.get('/edit', function (req, res) {
-  res.render('account/edit');
+  res.render('account/edit', {user: req.user});
+});
+
+router.put('/', function (req, res) {
+  Users.findByIdAndUpdate(req.user.id, req.body.user, function (err, updatedAccount) {
+    if (err || !updatedAccount) {
+      req.flash('error', 'Unable to update your account info.');
+      return res.redirect('/account');
+    }
+    req.flash('success', 'Your account info has been successfully updated.');
+    return res.redirect('/account');
+  });
 });
 
 module.exports = router;
