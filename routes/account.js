@@ -4,10 +4,10 @@ var router = express.Router();
 var Users = require('../models/User');
 var auth = require('../middleware/auth');
 
-//router.use(auth.isLoggedIn);
+router.use(auth.isLoggedIn);
 
 router.get('/', function (req, res) {
-  res.render('account/index');
+  res.render('account/index', {user: req.user});
 });
 
 module.exports = router;

@@ -22,10 +22,10 @@
                             </div>
                             <div class="media-body">
                                 <div class="profile-header">
-                                    <h1 class="profile-name" id="user_name">John Doe</h1>
-                                    <p class="profile-subinfo" id="user_occupation">Administrator</p>
-                                    <p class="profile-subinfo" id="user_company">Branch</p>
-                                    <p class="profile-subinfo">@myusername</p>
+                                    <h1 class="profile-name" id="user_name"><%= user.firstname + ' ' + user.lastname %></h1>
+                                    <p class="profile-subinfo" id="user_occupation"><%= user.type %></p>
+                                    <p class="profile-subinfo" id="user_company"><%= user.branch || 'No branch' %></p>
+                                    <p class="profile-subinfo">@<%= user.username %></p>
                                 </div>
 
                             </div>
@@ -34,35 +34,35 @@
                             <div class="profile-fields">
                                 <div class="profile-field">
                                     <div class="profile-field-name">Gender:</div>
-                                    <div class="profile-field-info" id="user_gender">Male</div>
+                                    <div class="profile-field-info" id="user_gender"><%= user.gender || 'Unspecified '%></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Birthdate:</div>
-                                    <div class="profile-field-info" id="user_birthdate">January 1, 1999</div>
+                                    <div class="profile-field-info" id="user_birthdate"><%= user.birthdate || 'Unspecified' %></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Civil Status:</div>
-                                    <div class="profile-field-info" id="user_civilstatus">Married</div>
+                                    <div class="profile-field-info" id="user_civilstatus"><%= user.civil_status || 'Unspecified' %></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Address:</div>
-                                    <div class="profile-field-info" id="user_address">Matina, Davao City</div>
+                                    <div class="profile-field-info" id="user_address"><%= user.address || 'Unspecified' %></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Phone:</div>
-                                    <div class="profile-field-info" id="user_phone">09123456789</div>
+                                    <div class="profile-field-info" id="user_phone"><%= user.phone || 'Unspecified' %></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Account Status:</div>
-                                    <div class="profile-field-info" id="user_gender">Active</div>
+                                    <div class="profile-field-info" id="user_gender"><%= user.enabled ? 'Enabled' : 'Disabled' %></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Account Created:</div>
-                                    <div class="profile-field-info" id="user_gender">January 1, 2018</div>
+                                    <div class="profile-field-info" id="user_gender"><%= user.created.toUTCString() %></div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Last Login:</div>
-                                    <div class="profile-field-info" id="user_gender">January 1, 2018</div>
+                                    <div class="profile-field-info" id="user_gender"><%= user.last_login.toUTCString() %></div>
                                 </div>
                             </div>
                         </div>
