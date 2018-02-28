@@ -65,13 +65,13 @@
                                 <div class="profile-field">
                                     <div class="profile-field-name">Account Created:</div>
                                     <div class="profile-field-info" id="user_gender">
-                                        <%= moment(user.created).calendar() %>
+                                        <%= moment(user.created).calendar(null, {sameElse: 'MMMM DD, YYYY hh:mm A'}) %>
                                     </div>
                                 </div>
                                 <div class="profile-field">
                                     <div class="profile-field-name">Last Login:</div>
                                     <div class="profile-field-info" id="user_gender">
-                                        <%= moment(user.last_login).calendar() %>
+                                        <%= moment(user.last_login).calendar(null, {sameElse: 'MMMM DD, YYYY hh:mm A'}) %>
                                     </div>
                                 </div>
                             </div>
