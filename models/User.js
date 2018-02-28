@@ -13,7 +13,7 @@ var userSchema = new mongoose.Schema({
   address: {type: String, default: null},
   phone: {type: String, default: null},
 
-  type: {type: String, default: 'cashier'},
+  type: {type: String, default: 'Cashier'},
   branch: {type: String, default: null},
 
   created: {type: Date, default: Date.now},
