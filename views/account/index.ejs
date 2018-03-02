@@ -20,7 +20,11 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="#">
-                                    <img id="user_picture" class="media-object img-thumbnail profile-picture" src="/assets/img/nopicture.png" alt="Profile Picture">
+                                    <img id="user_picture" class="media-object img-thumbnail profile-picture"
+                                         src="<%= user.picture
+                                                 ? '/uploads/' + user.picture
+                                                 : '/assets/img/nopicture.png' %>"
+                                         alt="Profile Picture">
                                 </a>
                             </div>
                             <div class="media-body">

@@ -9,13 +9,18 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12">
+            <% include ../partials/flash.ejs %>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
-            <form action="/account?_method=PUT" method="post">
-                <div class="row">
-                    <div class="col-md-12">
-                        <img src="/assets/img/nopicture.png" alt="Profile Picture" class="img-thumbnail profile-picture">
-                    </div>
-                </div>
+            <form action="/account?_method=PUT" method="post" enctype="multipart/form-data">
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                        <!--<img src="/assets/img/nopicture.png" alt="Profile Picture" class="img-thumbnail profile-picture">-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -81,6 +86,14 @@
                             <input type="text" class="form-control" id="address" name="user[address]"
                                 value="<%= user.address || '' %>">
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="profile_picture">Profile Picture</label>
+                        <input type="file" id="profile_picture" name="profile_picture"
+                            accept="image/jpeg, image/png">
+                        <p class="help-block">Max 512 KB only.</p>
                     </div>
                 </div>
                 <div class="row">

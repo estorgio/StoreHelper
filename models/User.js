@@ -12,6 +12,7 @@ var userSchema = new mongoose.Schema({
   civil_status: {type: String, default: null},
   address: {type: String, default: null},
   phone: {type: String, default: null},
+  picture: {type: String, default: null},
 
   type: {type: String, default: 'Cashier'},
   branch: {type: String, default: null},

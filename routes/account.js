@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var upload = require('../utils/upload')
+  .single('profile_picture');
 
 var Users = require('../models/User');
 var auth = require('../middleware/auth');
@@ -15,13 +17,30 @@ router.get('/edit', function (req, res) {
 });
 
 router.put('/', function (req, res) {
-  Users.findByIdAndUpdate(req.user.id, req.body.user, function (err, updatedAccount) {
-    if (err || !updatedAccount) {
-      req.flash('error', 'Unable to update your account info.');
-      return res.redirect('/account');
+  upload(req, res, function (err) {
+
+    if (err){
+      req.flash('error', err.toString());
+      return res.redirect('/account/edit');
     }
-    req.flash('success', 'Your account info has been successfully updated.');
-    return res.redirect('/account');
+
+    if (req.file) {
+      req.body.user.picture = req.file.filename;
+    }
+
+    // req.body.user.picture = req.file
+    //   ? req.file.filename
+    //   : null;
+
+    Users.findByIdAndUpdate(req.user.id, req.body.user, function (err, updatedAccount) {
+      if (err || !updatedAccount) {
+        req.flash('error', 'Unable to update your account info.');
+        return res.redirect('/account');
+      }
+      req.flash('success', 'Your account info has been successfully updated.');
+      return res.redirect('/account');
+    });
+
   });
 });
 
