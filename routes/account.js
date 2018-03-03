@@ -8,6 +8,11 @@ var auth = require('../middleware/auth');
 
 router.use(auth.isLoggedIn);
 
+router.use(function(req, res, next) {
+  res.requireStyle('profile-info.css');
+  next();
+});
+
 router.get('/', function (req, res) {
   res.render('account/index', {user: req.user});
 });

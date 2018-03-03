@@ -58,6 +58,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(require('./middleware/navigation'));
+app.use(require('./middleware/assets'));
 
 app.use('/users', userRoutes);
 app.use('/account', accountRoutes);

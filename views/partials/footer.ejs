@@ -1,5 +1,8 @@
 <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/js/globals.js"></script>
+<% assets.scripts.forEach(function(script) { %>
+    <script src="/assets/js/<%= script %>"></script>
+<% }) %>
 </body>
 </html>

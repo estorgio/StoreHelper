@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/globals.css">
+    <% assets.styles.forEach(function(style) { %>
+        <link rel="stylesheet" href="/assets/css/<%= style %>">
+    <% }) %>
 </head>
 <body>
 

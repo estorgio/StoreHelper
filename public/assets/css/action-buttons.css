@@ -1,0 +1,10 @@
+.action-buttons {
+    float: right;
+    margin-bottom: 10px;
+}
+.action-buttons + * {
+    clear: both;
+}
+.action-buttons form {
+    display: inline-block;
+}

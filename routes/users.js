@@ -8,6 +8,8 @@ router.use(auth.isLoggedIn);
 
 router.use(function (req, res, next) {
   res.setNavbarPage('/users');
+  res.requireStyle('action-buttons.css');
+  res.requireStyle('profile-info.css');
   next();
 });
 
