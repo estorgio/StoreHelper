@@ -45,8 +45,12 @@
                         <td><%= user.firstname %></td>
                         <td><%= user.lastname %></td>
                         <td><%= user.type %></td>
-                        <td><%= moment(user.created).calendar(null, {sameElse: 'MMMM DD, YYYY hh:mm A'}) %></td>
-                        <td><%= moment(user.last_login).calendar(null, {sameElse: 'MMMM DD, YYYY hh:mm A'}) %></td>
+                        <td title="<%= moment(user.created).format('MMMM DD, YYYY hh:mm A') %>">
+                            <%= moment(user.created).calendar(null, {sameElse: 'MMMM DD, YYYY hh:mm A'}) %>
+                        </td>
+                        <td title="<%= moment(user.last_login).format('MMMM DD, YYYY hh:mm A') %>">
+                            <%= moment(user.last_login).calendar(null, {sameElse: 'MMMM DD, YYYY hh:mm A'}) %>
+                        </td>
                     </tr>
                     <% }); %>
                     </tbody>
