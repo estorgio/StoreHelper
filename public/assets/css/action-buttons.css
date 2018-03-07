@@ -8,3 +8,7 @@
 .action-buttons form {
     display: inline-block;
 }
+.action-buttons.left {
+    float: left;
+    margin-bottom: 10px;
+}
